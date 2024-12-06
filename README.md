@@ -1,86 +1,174 @@
-							Inventory Optimization Project - Group B
-								Team Members:
-								Dhanush Chandar Sivakumar - Student ID: 500228646
-								Rithwik Prem - Student ID: 500220919
-								Sweatha Palani - Student ID: 500221321
-								Oluwakanyinsola Adebanjo - Student ID: 500228268
-								Rajesh Jayaraman - Student ID: 500228177
+# Inventory Optimization  
 
-Project Overview:
-This project is part of the Retail Industry Project with the objective of developing an AI-based system to predict product demand and optimize restocking. The goal is to reduce inventory holding costs while ensuring that products are available when needed. The system will use demand forecasting models (e.g., ARIMA, Prophet) and optimization techniques (e.g., linear programming) to suggest optimal restocking quantities.
+## Group Members
+| **Student Name**                  | **Student ID**  |
+|------------------------------------|-----------------|
+| Dhanush Chandar Sivakumar          | 500228646       |
+| Rithwik Prem                       | 500220919       |
+| Sweatha Palani                     | 500221321       |
+| Oluwakanyinsola Adebanjo           | 500228268       |
+| Rajesh Jayaraman                   | 500228177       |
 
+---
 
+## Project Overview
+This repository contains an AI-driven inventory optimization system that leverages:
+- **Time-Series Forecasting**: ARIMA for demand prediction.
+- **Optimization Algorithms**: Linear programming to minimize costs and balance stock levels.
+- **Automation Tools**: Jenkins and Ansible for CI/CD and deployment.
 
+**GitHub Repository Link**: [Group B Inventory Optimization Project](https://github.com/GroupB-DeploymentOfAISolution/Group-B/tree/main)
 
-**Phase 1 Objectives:**
+---
 
-1.Define the inventory optimization problem in retail.
+## Abstract
+This project focuses on the design and deployment of an AI-based inventory optimization system. By leveraging demand forecasting (ARIMA) and optimization algorithms, the system minimizes overstocking and stockouts, improving cost efficiency and customer satisfaction. The project also incorporates automation tools like Jenkins and Ansible to streamline development and deployment.
 
-2.Identify necessary data for demand forecasting, such as sales history, product categories, and seasonal trends.
+---
 
-3.Design a high-level system architecture for the AI-based inventory optimization system.
+## Step 1: Initial Planning & Design
 
-4.Create an initial database schema to store sales and inventory data.
+### Problem Definition
+Retailers struggle with:
+- **Overstocking:** High storage costs and wastage.
+- **Understocking:** Missed sales and customer dissatisfaction.
 
-5.Set up the GitHub repository for version control and documentation.
+**Solution:**  
+A predictive system that analyzes historical sales data to determine optimal stock levels.
 
+### Data Requirements
+- **Sales Data:** Historical transactions.
+- **Product Information:** Categories and pricing.
+- **Seasonal Data:** Demand spikes.
+- **Inventory Levels:** Stock notifications.
 
+### System Architecture
+- **Data Input:** Sales and inventory ingestion.
+- **Forecasting Model:** ARIMA for predictions.
+- **Optimization Algorithm:** Linear programming for restocking suggestions.
+- **Database:** MySQL for centralized storage.
 
+### Database Schema
+- **Products Table:** Stores product details.
+- **Sales Table:** Tracks transactions.
+- **Inventory Table:** Maintains stock levels and history.
 
+### GitHub Setup
+- **Repository Structure**:
+  - `/data`: Sample datasets.
+  - `/models`: Scripts for forecasting and optimization.
+  - `/docs`: Documentation.
+- **Version Control**: Branching strategy for individual contributions.
 
-**Repository Structure:**
+---
 
-/Data/        - Sample datasets and data sources.
+## Step 2: Development Phase
 
-/Models/      - Python scripts for demand forecasting and optimization (to be developed).
+### Data Preprocessing
+- **Cleaning**: Removed duplicates and handled missing values using `dropna()`.
+- **Outlier Detection**: Applied the IQR method for filtering extreme values.
+- **Feature Engineering**:
+  - Created features like `Total Price` = `Quantity * Price`.
+  - Aggregated monthly sales trends for demand analysis.
 
-/Docs/        - Project documentation (problem statement, architecture design, database schema).
+---
 
-README.md     - Project overview and instructions.
+### Forecasting Model Development (ARIMA)
+- **Model Selection**: ARIMA was selected for time-series forecasting.
+- **Metrics**:
+  - **MSE**: 6981501284.1
+  - **MAE**: 383153.88
+- **Validation**: Split data into training and testing sets.
 
+---
 
+### Continuous Integration with Jenkins
+- **Pipeline**:
+  - Environment setup.
+  - Dependency installation via `requirements.txt`.
+  - Automated testing with `pytest`.
 
+---
 
-**Setup Instructions:**
+## Step 3: Advanced Development with Ansible
 
-Clone the Repository:https://github.com/Rajesh9219/GroupB_2024F-T3_AISC2013_01/tree/main
+### Optimization Algorithms
+- **Linear Programming**:
+  - Used `scipy.optimize.linprog` to calculate optimal restocking.
+  - Constraints: Storage capacity, supplier limits.
 
-git clone <[repository-link](https://github.com/Rajesh9219/GroupB_2024F-T3_AISC2013_01/tree/main)>
+### Deployment Automation with Ansible
+- **Playbooks**:
+  - `setup_testing_environment.yml`: Installs Python, pip, and dependencies.
+  - `deploy_application.yml`: Deploys the application.
+- **Inventory**: Testing and production servers defined in `inventory.ini`.
 
-Create a New Branch: Each team member should work on a separate branch using the following naming convention:
+---
 
-git checkout -b <team-member-name>/<feature-or-task>
+### Testing and Validation
+- **Unit Testing**: Verified individual modules (e.g., ARIMA, optimization).
+- **Integration Testing**: Validated interactions between system components.
+- **Performance Testing**: Benchmarked execution times using `pytest-benchmark`.
 
-Example:git checkout -b dhanush/forecasting-model
+---
 
-Making Changes:
+## Step 4: Production Deployment
 
-After making necessary changes, stage your files:
+### Deployment Pipeline Design
+- **Tools**:
+  - **Jenkins**: CI/CD pipeline for integration and testing.
+  - **Ansible**: Automates environment setup and deployment.
 
-git add .
+### Monitoring and System Performance 
+- **Monitoring Tools**:
+  - Prometheus for system metrics.
+  - Grafana for visualization.
 
-Commit with a descriptive message:
+---
 
+## Conclusion
+The project successfully implemented an AI-driven inventory optimization system with automation and robust testing. This solution addresses overstocking and understocking challenges effectively.
 
-Copy code: git commit -m "Added initial architecture design"
+---
 
-Push Changes:git push origin <branch-name>
+## Installation and Setup
 
+Follow these steps to set up the project environment and deploy the solution:
 
-Pull Request (PR): Once a task is complete, submit a PR to merge your branch into the main branch. Ensure peer review before merging.
+### Clone the Repository
+Clone the GitHub repository to your local system:
+```bash
+git clone https://github.com/GroupB-DeploymentOfAISolution/Group-B.git
+cd Group-B
+```
+###  Set Up Python Environment
+Create a virtual environment and install the necessary dependencies:
 
+#### For Linux/Mac:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+#### For Windows
+```bash
+python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+### Run Ansible Playbooks
+Navigate to the Ansible directory:
+```bash
+cd ansible
+```
+### Deploy the Application
+Run the deployment playbook:
+```bash
+ansible-playbook -i inventory.ini deploy_application.yml
+```
+___
 
-
-
-
-
-**Collaboration Guidelines:**
-
-Use GitHub Issues to track and assign tasks.
-
-Regularly update documentation and code.
-
-Make sure all code is well-documented, and include meaningful commit messages.
-
-For further details, check the project documentation in the /Docs/ folder.
-
+## Notes
+- Ensure Python 3.8 or higher is installed.
+- SSH access must be configured for Ansible to connect to the target servers.
+- Use the requirements.txt file to ensure all dependencies are correctly installed.
